@@ -1,32 +1,19 @@
 name: test
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   build:
 
-    name: Rust ${{ matrix.os }} ${{ matrix.rust }}
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        rust:
-          - stable
-          - beta
-          - nightly
-        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-
-    - name: Setup Rust
-      uses: actions-rs/toolchain@v1
-      with:
-        profile: minimal
-        toolchain: ${{ matrix.rust }}
-        override: true
+    - uses: actions/checkout@v1
     - name: Build
-      run: cargo build
+      run: cargo build --verbose
+    - uses: actions/upload-artifact@v1 
+      with:
+         name: minigrep
+         path: target/debug/minigrep
     - name: Run tests
-      run: cargo test
-      continue-on-error: ${{ matrix.rust == 'nightly' }}
+      run: cargo test --verbose

@@ -1,3 +1,3 @@
 fn main() {
-    println!("Hello, Github Action");
+    println!("Hello, Github Action2");
 }
