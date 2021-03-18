@@ -1,5 +1,5 @@
 [package]
-name = "R-ADV2D"
+name = "r_adb2_d"
 version = "0.1.0"
 authors = ["ishiiyuki <mizuki.yuuri@gmail.com>"]
 edition = "2018"
